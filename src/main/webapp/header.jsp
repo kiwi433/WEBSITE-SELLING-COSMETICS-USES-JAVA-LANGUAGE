@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -80,81 +79,74 @@
 .dropdown:hover .dropbtn {
 	background-color: #ddd;
 }
-
-input[type=text] {
-	width: 130px;
+.search input[type=text] {
+	width: 1px;
 	box-sizing: border-box;
 	border: 2px solid #ccc;
 	border-radius: 4px;
 	font-size: 16px;
 	background-color: white;
 	background-image: url('images/search-icon.png');
-	background-position: 10px 10px;
+	background-position: 5px 8px;
 	background-repeat: no-repeat;
-	padding: 12px 20px 12px 40px;
+	padding: 6px 8px 1px 35px;
 	-webkit-transition: width 0.4s ease-in-out;
 	transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
+.search input[type=text]:focus {
 	width: 100%;
 }
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="banner.jsp"></jsp:include>
-	<!-- product section start -->
-	<div class="product_section layout_padding">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<h1 class="product_taital">Our Products</h1>
+	<!-- header section start -->
+	<div class="header_section">
+		<div class="container-fluid">
+			<nav class="navbar navbar-light bg-light justify-content-between">
+				<div id="mySidenav" class="sidenav">
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+					<a href="HomePageServlet">Home</a> <a href="productServlet">Products</a>
+					<a href="about.html">About</a> <a href="contact.html">Contact</a>
 				</div>
-			</div>
-			<div class="product_section_2 layout_padding">
-				<div class="row">
-					<c:set var="txt" value="${param.txtSearch }" />
-					<c:if test="${not empty txt}">
-						<c:set var="list" value="${requestScope.search }" />
+				<span class="toggle_icon" onclick="openNav()"><img
+					src="images/toggle-icon.png"></span> <a class="logo" href="HomePageServlet"><img src="images/LOGOCSDL1.png" height="170px"width="250px	"></a>
+				<div class="form-inline ">
+					<div class="login_text">
 
-						<c:if test="${not empty list }">
+						<ul>
+							<li><div class="dropdown">
+									<button class="dropbtn">
+										<img src="images/user-icon.png"></a>
+									</button>
+									<div class="dropdown-content">
 
-							<c:forEach var="o" items="${list}">
-								<div class="col-lg-3 col-sm-6">
-									<div class="product_box">
-										<h4 class="bursh_text">${o.name}</h4>
-										<!--   <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p> -->
-										<img src="${o.image}" class="image_1">
-										<div class="btn_main">
-											<div class="buy_bt">
-												<ul>
-													<!-- <li class="active"><a href="#">Buy Now</a></li> -->
-													<li><a href="#">Buy Now</a></li>
-												</ul>
-											</div>
-											<h3 class="price_text">${o.price}</h3>
-										</div>
+										<c:if test="${sessionScope.login == null }">
+											<a href="loginServlet">Login</a>
+										</c:if>
+										<c:if test="${sessionScope.login != null }">
+											<a href="logoutServlet">Logout(${sessionScope.login.username})</a>
+										</c:if>
+
 									</div>
-								</div>
-							</c:forEach>
-						</c:if>
-						<c:if test="${empty list }">
-							<h2>No product is matched !!!</h2>
-						</c:if>
-					</c:if>
+								</div></li>
+
+							<li><a href="#"><img src="images/bag-icon.png"></a></li>
+							<li><form action="searchServlet" method="post" class="search">
+						    
+								<input type="text" name="txtSearch" value="${param.txtSearch }"
+									placeholder="What do you need?" />
+							</form></li>
+
+
+						</ul>
+					</div>
 				</div>
-
-
-			</div>
-			<!--                <div class="seemore_bt"><a href="#">See More</a></div>
- -->
+			</nav>
 		</div>
 	</div>
-
-	<!-- product section end -->
-	<jsp:include page="about.jsp"></jsp:include>
-	<jsp:include page="footer.jsp"></jsp:include>
+	<!-- header section end -->
+	
 
 	<!-- Javascript files-->
 	<script src="js/jquery.min.js"></script>

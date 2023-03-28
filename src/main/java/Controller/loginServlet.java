@@ -42,7 +42,7 @@ public class loginServlet extends HttpServlet {
 				// chuyen den view trang home
 				response.sendRedirect("HomePageServlet");
 			} else {
-				request.setAttribute("mss", "Có vẻ tên đăng nhập sai hoặc mật khẩu sai!!!");
+				request.setAttribute("mss", "Tên đăng nhập sai hoặc mật khẩu sai!!!");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		} catch (Exception e) {

@@ -9,8 +9,6 @@ import java.util.List;
 import Model.product;
 import connection.DbCon;
 
-
-
 public class productDao {
 	Connection con = null;
 	PreparedStatement pst = null;
@@ -40,16 +38,17 @@ public class productDao {
 		}
 		return list;
 	}
+
 	public product getspByID(String id) {
-product p = new product();
-		String sql = "select * from product where id=? ;";
+		product p = new product();
+		String sql = "select * from product where id= ? ;";
 		try {
 			con = DbCon.getConnection();
 			pst = con.prepareStatement(sql);
 			pst.setString(1, id);
 			rs = pst.executeQuery();
 			while (rs.next()) {
-				
+
 				p.setId(rs.getString("id"));
 				p.setName(rs.getString("name"));
 				p.setPrice(rs.getString("price"));
@@ -65,12 +64,12 @@ product p = new product();
 		return p;
 	}
 
-	public List<product> search(String searchValue){
+	public List<product> search(String searchValue) {
 		List<product> listPSearchs;
 		listPSearchs = new ArrayList<>();
-		
-		Connection con =null;
-		PreparedStatement stm =  null;
+
+		Connection con = null;
+		PreparedStatement stm = null;
 		ResultSet rs = null;
 		try {
 			con = DbCon.getConnection();
@@ -79,7 +78,6 @@ product p = new product();
 			stm.setString(1, "%" + searchValue + "%");
 			stm.setString(2, "%" + searchValue + "%");
 			stm.setString(3, "%" + searchValue + "%");
-			
 
 			rs = stm.executeQuery();
 			while (rs.next()) {
@@ -98,11 +96,12 @@ product p = new product();
 		}
 		return listPSearchs;
 	}
+
 	public static void main(String[] args) {
 		productDao dao = new productDao();
 		List<product> list = dao.selectProduct();
 		System.out.println(list);
-		String st="sua tam";
+		String st = "sua tam";
 		List<product> list1 = dao.search(st);
 		System.out.println(list1);
 	}

@@ -1,18 +1,11 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+<!-- basic -->
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- mobile metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
-<!-- site metas -->
-<title>Beauty</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- mobile metas -->
@@ -48,10 +41,67 @@
 	media="screen">
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
+<style type="text/css">
+.dropbtn {
+	border: none;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	font-size: 16px;
+	display: none;
+	position: absolute;
+	min-width: 10px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	text-transform: capitalize;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #ddd;
+}
+
+input[type=text] {
+	width: 1px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-image: url('images/search-icon.png');
+	background-position: 5px 8px;
+	background-repeat: no-repeat;
+	padding: 6px 8px 1px 35px;
+	-webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+	width: 100%;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include> 
-<jsp:include page="banner.jsp"></jsp:include>
 	<!-- product section start -->
 	<div class="product_section layout_padding">
 		<div class="container">
@@ -88,11 +138,10 @@
  -->
 		</div>
 	</div>
- <jsp:include page="about.jsp"></jsp:include>
-<jsp:include page="footer.jsp"></jsp:include>
-	
 
-	<!-- footer section end -->
+	<!-- product section end -->
+	
+	<jsp:include page="footer.jsp"></jsp:include> 
 
 	<!-- Javascript files-->
 	<script src="js/jquery.min.js"></script>

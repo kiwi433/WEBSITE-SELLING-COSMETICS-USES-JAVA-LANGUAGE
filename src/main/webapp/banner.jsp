@@ -1,20 +1,9 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- mobile metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
-<!-- site metas -->
-<title>Beauty</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- mobile metas -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -48,50 +37,121 @@
 	media="screen">
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
+<style type="text/css">
+.dropbtn {
+	border: none;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	font-size: 16px;
+	display: none;
+	position: absolute;
+	min-width: 10px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	text-transform: capitalize;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #ddd;
+}
+
+input[type=text] {
+	width: 1px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-image: url('images/search-icon.png');
+	background-position: 5px 8px;
+	background-repeat: no-repeat;
+	padding: 6px 8px 1px 35px;
+	-webkit-transition: width 0.4s ease-in-out;
+	transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+	width: 100%;
+}
+</style>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include> 
-<jsp:include page="banner.jsp"></jsp:include>
-	<!-- product section start -->
-	<div class="product_section layout_padding">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<h1 class="product_taital">Our Products</h1>
-			  <p class="product_text">Outstanding skin care products are trusted by many users of our store</p>				</div>
-			</div>
-			<div class="product_section_2 layout_padding">
-				<div class="row">
-					<c:forEach items="${listP}" var="o">
-						<div class="col-lg-3 col-sm-6">
-							<div class="product_box">
-								<h4 class="bursh_text">${o.name}</h4>
-								<!--   <p class="lorem_text">incididunt ut labore et dolore magna aliqua. Ut enim </p> -->
-								<img src="${o.image}" class="image_1">
-								<div class="btn_main">
-									<div class="buy_bt">
-										<ul>
-											<!-- <li class="active"><a href="#">Buy Now</a></li> -->
-											<li><a href="detailProductServlet?id=${o.id}">Buy Now</a></li>
-										</ul>
-									</div>
-									<h3 class="price_text">${o.price}</h3>
+	
+	<!-- banner section start -->
+	<div class="banner_section layout_padding">
+		<div id="carouselExampleIndicators" class="carousel slide"
+			data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-6">
+								<h1 class="banner_taital">
+									Beauty <br>
+								</h1>
+                           <p class="banner_text">Thank you for visiting our store</p>
+								<div class="read_bt">
+									<a href="#">Buy Now</a>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="banner_img">
+									<img src="images/3.jpg">
 								</div>
 							</div>
 						</div>
-					</c:forEach>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-6">
+								<h1 class="banner_taital">
+									Beauty <br>
+								</h1>
+							    <p class="banner_text">Thank you for visiting our store</p>
+								<div class="read_bt">
+									<a href="#">Buy Now</a>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="banner_img">
+									<img src="images/3.jpg">
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 
-
 			</div>
-			<!--                <div class="seemore_bt"><a href="#">See More</a></div>
- -->
 		</div>
 	</div>
- <jsp:include page="about.jsp"></jsp:include>
-<jsp:include page="footer.jsp"></jsp:include>
+	<!-- banner section end -->
 	
 
+	<!-- product section end -->
+	
 	<!-- footer section end -->
 
 	<!-- Javascript files-->

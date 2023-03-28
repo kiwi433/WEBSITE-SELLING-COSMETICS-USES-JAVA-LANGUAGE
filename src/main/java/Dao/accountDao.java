@@ -67,7 +67,7 @@ public class accountDao {
 		try {
 			con = DbCon.getConnection();
 			if (con != null) {
-				String sql = " INSERT INTO  `accounts` (`username`,`password`,isAdmin) VALUES (?,?,0); ";
+				String sql = "INSERT INTO `accounts` (`username`,`password`,isAdmin) VALUES (?,?,0); ";
 				pre = con.prepareStatement(sql);
 				pre.setString(1, username);
 				pre.setString(2, password);

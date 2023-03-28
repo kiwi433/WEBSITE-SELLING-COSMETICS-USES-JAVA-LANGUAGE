@@ -39,7 +39,7 @@ public class detailProductServlet extends HttpServlet {
 		productDao dao = new productDao();
 		product p= dao.getspByID(id);
 		request.setAttribute("detail", p);
-		request.getRequestDispatcher("products.jsp").forward(request, response);
+		request.getRequestDispatcher("productsDetail.jsp").forward(request, response);
 	}
 
 	/**
