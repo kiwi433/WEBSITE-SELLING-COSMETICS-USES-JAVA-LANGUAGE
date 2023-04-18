@@ -29,19 +29,24 @@ public class loginServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String username = request.getParameter("txtUsername");
 		String password = request.getParameter("txtPassword");
-
+		
 		accountDao dao = new accountDao();
 		// chuyen den cac view can cu vao ket qua dang nhap
 		try {
 			account isValid = dao.checkLogin(username, password);
 			if (isValid != null) {
-//				 khoi tao session
-				HttpSession session = request.getSession();
-				// thiet lap gia tri trong session
-				session.setAttribute("login", isValid);
-				// chuyen den view trang home
-				response.sendRedirect("HomePageServlet");
-			} else {
+
+				
+					// khoi tao session
+					HttpSession session = request.getSession();
+					// thiet lap gia tri trong session
+					int sessionTimeout = 1800;
+					session.setMaxInactiveInterval(sessionTimeout);
+					session.setAttribute("username", isValid);
+					// chuyen den view trang home
+					response.sendRedirect("HomePageServlet");
+			}
+				 else {
 				request.setAttribute("mss", "Tên đăng nhập sai hoặc mật khẩu sai!!!");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}

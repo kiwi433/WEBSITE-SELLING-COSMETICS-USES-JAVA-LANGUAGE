@@ -35,6 +35,13 @@ public class signupServlet extends HttpServlet {
 		String username = request.getParameter("txtUsername");
 		String password = request.getParameter("txtPassword");
 		String confirm = request.getParameter("txtConfirm");
+		String id = request.getParameter("id");
+		String fullname = request.getParameter("fullname");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String gender = request.getParameter("gender");
+	
+		String isAdmin= request.getParameter("isadmin");
 		String url = showInsertErr;
 		try {
 			boolean error = false;
@@ -57,7 +64,7 @@ public class signupServlet extends HttpServlet {
 				accountDao dao = new accountDao();
 				account acc = dao.checkAccount(username);
 				if (acc == null) {
-					dao.signUpAccount(username, password);
+					dao.InsertAccountAD(id, username, password, fullname, phone, address, isAdmin, gender);
 
 					request.setAttribute("messe", "Signing is successful !!!");
 					RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");

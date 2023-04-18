@@ -1,34 +1,35 @@
 package Model;
 
-public class product {
-	private String id;
+public class product extends userInfo{
+	private int id;
 	private String name;
 	private String description;
 	private String image;
-	private String price;
+	private int price;
 	private int quantity;
-private String category;
+	private String category;
+
 	public product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public product(String id, String name, String description, String image, String price,int quantity,String category) {
+	public product(int id, String name, String description, String image, int price, int quantity, String category) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.image = image;
 		this.price = price;
-		this.quantity=quantity;
-		this.category=category;
+		this.quantity = quantity;
+		this.category = category;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -56,13 +57,14 @@ private String category;
 		this.image = image;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -70,7 +72,7 @@ private String category;
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
+
 	public String getCategory() {
 		return category;
 	}
@@ -78,11 +80,11 @@ private String category;
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "product [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + ", price="
-				+ price +",quantity="+quantity+ ",category"+category+"]";
+				+ price + ",quantity=" + quantity + ",category" + category + "]";
 	}
 
 }

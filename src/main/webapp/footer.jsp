@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	
-
 	<!-- footer section start -->
 	<div class="footer_section layout_padding">
 		<div class="container">
@@ -19,7 +16,7 @@
 			<div class="contact_section_2">
 				<div class="row">
 					<div class="col-sm-4">
-						<h3 class="address_text">Contact Us</h3>
+						
 						<h3 class="address_text">Contact Us</h3>
                      <div class="address_bt">
                         <ul>
@@ -42,7 +39,7 @@
                      </div>
                   </div>
                   <div class="col-sm-4">
-                     <div class="footer_logo_1"><a href="index.html"><img src="images/footer-logo.png"></a></div>
+                     <div class="footer_logo_1"><a href="index.html"><img src="images/footer_logo.png"></a></div>
                      <p class="dummy_text">Join us as the number one cosmetic brand. There are many reputable options for you. Thank you for visiting our store</p>
                   </div>
                   <div class="col-sm-4">
@@ -89,6 +86,7 @@
 		function closeNav() {
 			document.getElementById("mySidenav").style.width = "0";
 		}
+		
 	</script>
 </body>
 </html>

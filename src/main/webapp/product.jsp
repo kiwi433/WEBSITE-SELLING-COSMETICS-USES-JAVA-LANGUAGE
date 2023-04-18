@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- mobile metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
 <title>Beauty</title>
@@ -101,14 +100,85 @@ input[type=text]:focus {
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include> 
+	<!-- header section start -->
+	<div class="header_section">
+		<div class="container-fluid">
+			<nav class="navbar navbar-light bg-light justify-content-between">
+				<div id="mySidenav" class="sidenav">
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+					<a href="HomePageServlet">Home</a> <a href="productServlet">Products</a>
+					<a href="about.html">About</a> <a href="contact.html">Contact</a>
+				</div>
+				<span class="toggle_icon" onclick="openNav()"><img
+					src="images/toggle-icon.png"></span> <a class="logo"
+					href="HomePageServlet"><h1
+						style="width: 80%; font-size: 60px; color: #000; line-height: 40px; padding-top: 10px; font-family: 'Great Vibes', cursive;">
+						Beauty 
+					</h1></a>
+				<div class="form-inline ">
+					<div class="login_text">
+
+						<ul>
+							<li><div class="dropdown">
+									<button class="dropbtn"style="background-color: #FEF4EC;">
+										<i class="fa fa-user"style='font-size:24px'></i>
+									</button>
+									<div class="dropdown-content">
+
+										<c:if test="${sessionScope.username == null }">
+											<a href="loginServlet">Login</a>
+										</c:if>
+										<<c:if test="${sessionScope.username.isAdmin ==false }">
+										
+										<a href="ReadTKCN?idAccount=${sessionScope.username.id}">My Account</a>
+											<a href="logoutServlet">Logout(${sessionScope.username.username})</a>
+										</c:if>
+									
+										<c:if test="${sessionScope.username.isAdmin == true }">
+										
+										<a href="ReadTKCN?idAccount=${sessionScope.username.id}">My Account</a>
+										<a href="HomeAdmin">Admin</a>
+											<a href="logoutServlet">Logout(${sessionScope.username.username})</a>
+										</c:if>
+
+									</div>
+								</div></li>
+
+								<li ><div class="dropdown">
+									<button class="dropbtn"style="background-color: #FEF4EC;">
+									<i class="fa fa-shopping-cart"style='font-size:24px'><sub></sub></i>
+									</button><div class="dropdown-content">
+
+										
+										<c:if test="${sessionScope.username != null }">
+										<a href="Checkout">Order</a>
+											<a href="cartServlet">Cart</a>
+										</c:if>
+
+									</div></div></li>
+							<li><form action="searchServlet" method="post" class="search">
+						    
+								<input type="text" name="txtSearch" value="${param.txtSearch }"
+									placeholder="What do you need?" />
+							</form></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- header section end -->
+
+
 	<!-- product section start -->
 	<div class="product_section layout_padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
 					<h1 class="product_taital">Our Products</h1>
-			  <p class="product_text">Outstanding skin care products are trusted by many users of our store</p>				</div>
+					<p class="product_text">Outstanding skin care products are
+						trusted by many users of our store</p>
+				</div>
 			</div>
 			<div class="product_section_2 layout_padding">
 				<div class="row">
@@ -122,7 +192,8 @@ input[type=text]:focus {
 									<div class="buy_bt">
 										<ul>
 											<!-- <li class="active"><a href="#">Buy Now</a></li> -->
-											<li><a href="detailProductServlet?id=${o.id}">Buy Now</a></li>
+											<li><a href="detailProductServlet?id=${o.id}">Buy
+													Now</a></li>
 										</ul>
 									</div>
 									<h3 class="price_text">${o.price}</h3>
@@ -140,8 +211,8 @@ input[type=text]:focus {
 	</div>
 
 	<!-- product section end -->
-	
-	<jsp:include page="footer.jsp"></jsp:include> 
+
+	<jsp:include page="footer.jsp"></jsp:include>
 
 	<!-- Javascript files-->
 	<script src="js/jquery.min.js"></script>

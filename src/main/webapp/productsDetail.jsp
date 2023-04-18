@@ -1,5 +1,15 @@
+<%@page import="Model.account"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+
+account auth = (account) request.getSession().getAttribute("username");
+if (auth != null) {
+	request.setAttribute("person", auth);
+}
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -324,6 +334,69 @@
 	text-transform: uppercase;
 	cursor: pointer;
 }
+
+<
+b:tag name ='style '> /* <![CDATA[ */ .buttons_added {
+	opacity: 1;
+	display: inline-block;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	white-space: nowrap;
+	vertical-align: top;
+}
+
+.is-form {
+	overflow: hidden;
+	position: relative;
+	background-color: #f9f9f9;
+	height: 2.2rem;
+	width: 1.9rem;
+	padding: 0;
+	text-shadow: 1px 1px 1px #fff;
+	border: 1px solid #ddd;
+}
+
+.is-form:focus, .input-text:focus {
+	outline: none;
+}
+
+.is-form.minus {
+	border-radius: 4px 0 0 4px;
+}
+
+.is-form.plus {
+	border-radius: 0 4px 4px 0;
+}
+
+.input-qty {
+	background-color: #fff;
+	height: 2.2rem;
+	text-align: center;
+	font-size: 1rem;
+	display: inline-block;
+	vertical-align: top;
+	margin: 0;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	border-left: 0;
+	border-right: 0;
+	padding: 0;
+}
+
+.input-qty::-webkit-outer-spin-button, .input-qty::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+/* ]]> */
+</
+b
+
+
+
+
+:tag
+>
 </style>
 </head>
 <body>
@@ -335,30 +408,34 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div style="">
-						<div class="item">
-							<img src="${detail.image}" />
+						<div class="">
+							<img src="${detail.image}"
+								style="position: absolute; top: 50%; left: 50%; width: 285px; height: 329px; margin-top: -150px; margin-left: -150px;" />
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="product-dtl">
 						<div class="product-info">
-							<div class="product-name">${detail.name}</div>
+							<div class="product-name">
+								<span>${detail.name}</span>
+							</div>
+							<div class="product-name">
+								<span><b>Price:</b>${detail.price}</span>
+							</div>
+							<div class="product-name">
+								<span><b>Category:</b>${detail.category}</span>
+							</div>
 
-							<div class="product-price-discount">
-								<span>${detail.price}</span>
+							<div class="product-name">
+								<span><b>Quantity:</b> ${detail.quantity}</span>
 							</div>
 						</div>
-
-
 						<div class="product-count">
-							<label for="size">Quantity</label>
-							<form action="#" class="display-flex">
-								<div class="qtyminus">-</div>
-								<input type="text" name="quantity" value="1" class="qty">
-								<div class="qtyplus">+</div>
-							</form>
-							<a href="#" class="round-black-btn">Add to Cart</a>
+
+							<br> <a
+								href="Addtocart?id=${detail.id}&id_ac=${sessionScope.username.id}"
+								class="round-black-btn">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -420,66 +497,72 @@
 		crossorigin="anonymous"></script>
 
 	<script>
-         function openNav() {
-           document.getElementById("mySidenav").style.width = "100%";
-         }
-         
-         function closeNav() {
-           document.getElementById("mySidenav").style.width = "0";
-         }
-		    function syncPosition(el) {
-		        var count = el.item.count - 1;
-		        var current = Math.round(el.item.index - (el.item.count / 2) - .5);
-		        if (current < 0) {
-		            current = count;
-		        }
-		        if (current > count) {
-		            current = 0;
-		        }
-		        thumb
-		            .find(".owl-item")
-		            .removeClass("current")
-		            .eq(current)
-		            .addClass("current");
-		        var onscreen = thumb.find('.owl-item.active').length - 1;
-		        var start = thumb.find('.owl-item.active').first().index();
-		        var end = thumb.find('.owl-item.active').last().index();
-		        if (current > end) {
-		            thumb.data('owl.carousel').to(current, 100, true);
-		        }
-		        if (current < start) {
-		            thumb.data('owl.carousel').to(current - onscreen, 100, true);
-		        }
-		    }
-		    function syncPosition2(el) {
-		        if (syncedSecondary) {
-		            var number = el.item.index;
-		            slider.data('owl.carousel').to(number, 100, true);
-		        }
-		    }
-		    thumb.on("click", ".owl-item", function(e) {
-		        e.preventDefault();
-		        var number = $(this).index();
-		        slider.data('owl.carousel').to(number, 300, true);
-		    });
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "100%";
+		}
 
-
-            $(".qtyminus").on("click",function(){
-                var now = $(".qty").val();
-                if ($.isNumeric(now)){
-                    if (parseInt(now) -1> 0)
-                    { now--;}
-                    $(".qty").val(now);
-                }
-            })            
-            $(".qtyplus").on("click",function(){
-                var now = $(".qty").val();
-                if ($.isNumeric(now)){
-                    $(".qty").val(parseInt(now)+1);
-                }
-            });
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+		function syncPosition(el) {
+			var count = el.item.count - 1;
+			var current = Math.round(el.item.index - (el.item.count / 2) - .5);
+			if (current < 0) {
+				current = count;
+			}
+			if (current > count) {
+				current = 0;
+			}
+			thumb.find(".owl-item").removeClass("current").eq(current)
+					.addClass("current");
+			var onscreen = thumb.find('.owl-item.active').length - 1;
+			var start = thumb.find('.owl-item.active').first().index();
+			var end = thumb.find('.owl-item.active').last().index();
+			if (current > end) {
+				thumb.data('owl.carousel').to(current, 100, true);
+			}
+			if (current < start) {
+				thumb.data('owl.carousel').to(current - onscreen, 100, true);
+			}
+		}
+		function syncPosition2(el) {
+			if (syncedSecondary) {
+				var number = el.item.index;
+				slider.data('owl.carousel').to(number, 100, true);
+			}
+		}
+		thumb.on("click", ".owl-item", function(e) {
+			e.preventDefault();
+			var number = $(this).index();
+			slider.data('owl.carousel').to(number, 300, true);
 		});
-      </script>
+	</script>
+	<script>
+		//<![CDATA[
+		$('input.input-qty')
+				.each(
+						function() {
+							var $this = $(this), qty = $this.parent().find(
+									'.is-form'), min = Number($this.attr('min')), max = Number($this
+									.attr('max'))
+							if (min == 0) {
+								var d = 0
+							} else
+								d = min
+							$(qty).on('click', function() {
+								if ($(this).hasClass('minus')) {
+									if (d > min)
+										d += -1
+								} else if ($(this).hasClass('plus')) {
+									var x = Number($this.val()) + 1
+									if (x <= max)
+										d += 1
+								}
+								$this.attr('value', d).val(d)
+							})
+						})
+		//]]>
+	</script>
 </body>
 </html>
 </html>

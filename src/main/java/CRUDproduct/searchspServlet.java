@@ -1,9 +1,9 @@
-package Controller;
+package CRUDproduct;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +14,16 @@ import Dao.productDao;
 import Model.product;
 
 /**
- * Servlet implementation class detailProductServlet
+ * Servlet implementation class searchspServlet
  */
-@WebServlet("/detailProductServlet")
-public class detailProductServlet extends HttpServlet {
+@WebServlet("/searchspServlet")
+public class searchspServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public detailProductServlet() {
+    public searchspServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +32,34 @@ public class detailProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		DecimalFormat dcf = new DecimalFormat();
-		request.setAttribute("dcf", dcf);
-		int id=Integer.parseInt( request.getParameter("id"));
-		productDao dao = new productDao();
-		product p= dao.getspByID(id);
-		request.setAttribute("detail", p);
-		request.getRequestDispatcher("productsDetail.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			request.setCharacterEncoding("UTF-8");
+			
+			String txt=request.getParameter("txtSearch");
+			DecimalFormat dcf = new DecimalFormat();
+			request.setAttribute("dcf", dcf);
+		
+		productDao dao = new productDao();
 	
+		List<product> list =dao.search(txt);		
+		request.setAttribute("listProduct",list);
+		request.getRequestDispatcher("CRUDProduct/CRUDSanpham.jsp").forward(request, response);	
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			
+		}
 	}
 
 }
+
+

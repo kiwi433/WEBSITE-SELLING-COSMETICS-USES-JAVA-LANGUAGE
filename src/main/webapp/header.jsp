@@ -41,6 +41,7 @@
 	media="screen">
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style type="text/css">
 .dropbtn {
 	border: none;
@@ -110,35 +111,53 @@
 					<a href="about.html">About</a> <a href="contact.html">Contact</a>
 				</div>
 				<span class="toggle_icon" onclick="openNav()"><img
-					src="images/toggle-icon.png"></span> <a class="logo" href="HomePageServlet"><img src="images/LOGOCSDL1.png" height="170px"width="250px	"></a>
+					src="images/toggle-icon.png"></span> <a class="logo" href="HomePageServlet"></a>
 				<div class="form-inline ">
 					<div class="login_text">
 
 						<ul>
 							<li><div class="dropdown">
-									<button class="dropbtn">
-										<img src="images/user-icon.png"></a>
+									<button class="dropbtn"style="background-color: #FEF4EC;">
+										<i class="fa fa-user"style='font-size:24px'></i>
 									</button>
 									<div class="dropdown-content">
 
-										<c:if test="${sessionScope.login == null }">
+										<c:if test="${sessionScope.username == null }">
 											<a href="loginServlet">Login</a>
 										</c:if>
-										<c:if test="${sessionScope.login != null }">
-											<a href="logoutServlet">Logout(${sessionScope.login.username})</a>
+										<<c:if test="${sessionScope.username.isAdmin ==false }">
+										
+										<a href="ReadTKCN?idAccount=${sessionScope.username.id}">My Account</a>
+											<a href="logoutServlet">Logout(${sessionScope.username.username})</a>
+										</c:if>
+									
+										<c:if test="${sessionScope.username.isAdmin == true }">
+										
+										<a href="ReadTKCN?idAccount=${sessionScope.username.id}">My Account</a>
+										<a href="HomeAdmin">Admin</a>
+											<a href="logoutServlet">Logout(${sessionScope.username.username})</a>
 										</c:if>
 
 									</div>
 								</div></li>
 
-							<li><a href="#"><img src="images/bag-icon.png"></a></li>
+								<li ><div class="dropdown">
+									<button class="dropbtn"style="background-color: #FEF4EC;">
+									<i class="fa fa-shopping-cart"style='font-size:24px'><sub></sub></i>
+									</button><div class="dropdown-content">
+
+										
+										<c:if test="${sessionScope.username != null }">
+										<a href="Checkout">Order</a>
+											<a href="cartServlet">Cart</a>
+										</c:if>
+
+									</div></div></li>
 							<li><form action="searchServlet" method="post" class="search">
 						    
 								<input type="text" name="txtSearch" value="${param.txtSearch }"
 									placeholder="What do you need?" />
 							</form></li>
-
-
 						</ul>
 					</div>
 				</div>

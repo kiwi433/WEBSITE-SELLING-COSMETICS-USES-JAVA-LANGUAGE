@@ -1,6 +1,17 @@
+<%@page import="Model.Cart"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.account"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	account auth = (account) request.getSession().getAttribute("username");
+	
+	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+	if (cart_list != null) {
+		request.setAttribute("cart_list", cart_list);
+	}
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -269,13 +280,14 @@ button:hover {
 				<!--   other buttons -->
 				<div class="other">
 					<!--      Forgot Password button-->
-					<button class="btn submits frgt-pass">
-						<input type="reset" value="Reset" />
+					<button class="btn submits frgt-pass"
+						 type="reset">Reset
+						 <i class="fa-solid fa-eraser"></i>
 					</button>
 					<!--     Sign Up button -->
 					<button class="btn submits sign-up">
-						<a href="signup.jsp">Signup</a><i class="fa fa-user-plus"
-							aria-hidden="true"></i>
+						<a href="signup.jsp">Signup <i class="fa fa-user-plus"
+							aria-hidden="true"></i> </a>
 					</button>
 					<!--      End Other the Division -->
 				</div>
@@ -308,6 +320,11 @@ button:hover {
 			pwShown = 0;
 			hide();
 		}
-	}, false);
+	}, false); <script language="javascript">
+    var button = document.getElementById("btn");
+    button.onclick = function(){
+        alert("Chào mừng bạn đến với freetuts.net");
+    }
+</script>
 </script>
 </html>

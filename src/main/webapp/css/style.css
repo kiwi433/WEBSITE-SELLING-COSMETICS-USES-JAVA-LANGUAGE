@@ -445,7 +445,7 @@ button {
 }
 
 .image_1 {
-    width: 10%;
+    width: 100%;
     text-align: center;
     margin: 20px 0px;
     padding: 0px 20px;
@@ -567,7 +567,7 @@ button {
 }
 
 .image_3 {
-    width: 10%;
+    width: 100%;
     float: left;
     height: 430px;
 }

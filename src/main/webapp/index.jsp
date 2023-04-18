@@ -48,6 +48,7 @@
 	media="screen">
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css"
 	rel="stylesheet" type="text/css" />
+	
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include> 
@@ -81,8 +82,6 @@
 						</div>
 					</c:forEach>
 				</div>
-
-
 			</div>
 			<!--                <div class="seemore_bt"><a href="#">See More</a></div>
  -->
@@ -90,8 +89,6 @@
 	</div>
  <jsp:include page="about.jsp"></jsp:include>
 <jsp:include page="footer.jsp"></jsp:include>
-	
-
 	<!-- footer section end -->
 
 	<!-- Javascript files-->
