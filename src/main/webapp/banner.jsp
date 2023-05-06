@@ -9,9 +9,6 @@
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
 <title>Beauty</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
 <!-- bootstrap css -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <!-- style css -->
@@ -112,7 +109,7 @@ input[type=text]:focus {
 								</h1>
                            <p class="banner_text">Thank you for visiting our store</p>
 								<div class="read_bt">
-									<a href="#">Buy Now</a>
+									<a href="productServlet">Buy Now</a>
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -132,7 +129,7 @@ input[type=text]:focus {
 								</h1>
 							    <p class="banner_text">Thank you for visiting our store</p>
 								<div class="read_bt">
-									<a href="#">Buy Now</a>
+									<a href="productServlet">Buy Now</a>
 								</div>
 							</div>
 							<div class="col-sm-6">

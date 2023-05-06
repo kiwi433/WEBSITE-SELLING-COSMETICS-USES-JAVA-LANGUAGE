@@ -64,21 +64,38 @@ public class accountDao {
 		return null;
 	}
 
-	public void signUpAccount(String username, String password) {
-		Connection con = null;
-		PreparedStatement pre = null;
-
+	public void signUpAccount(String username, String password, String fullname, String phone, String address,
+			String gender) throws ClassNotFoundException {
+		String sql1 = "INSERT INTO accounts (username,password,isadmin) VALUES (?,?,0)";
+		String sql2 = "INSERT INTO user_infor (id_account, fullname, phonenumber, address,gender) VALUES (?, ?, ?, ?,?)";
+		Connection conn = null;
+		PreparedStatement stmt1 = null, stmt2 = null;
 		try {
-			con = DbCon.getConnection();
-			if (con != null) {
-				String sql = "INSERT INTO `accounts` (`username`,`password`,isAdmin) VALUES (?,?,0); ";
-				pre = con.prepareStatement(sql);
-				pre.setString(1, username);
-				pre.setString(2, password);
-				pre.executeUpdate();
-			}
+			conn = DbCon.getConnection();
 
-		} catch (Exception e) {
+			stmt1 = conn.prepareStatement(sql1);
+			stmt1.setString(1, username);
+			stmt1.setString(2, password);
+			stmt1.executeUpdate();
+
+			String sql = "SELECT LAST_INSERT_ID()";
+			stmt1 = conn.prepareStatement(sql);
+			ResultSet rs = stmt1.executeQuery();
+			rs.next();
+			int departmentId = rs.getInt(1);
+
+			stmt2 = conn.prepareStatement(sql2);
+			stmt2.setInt(1, departmentId);
+			stmt2.setString(2, fullname);
+			stmt2.setString(3, phone);
+			stmt2.setString(4, address);
+			stmt2.setString(5, gender);
+
+			stmt2.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
 		}
 	}
 
@@ -279,7 +296,7 @@ public class accountDao {
 	public void InsertAccountAD(String id, String username, String password, String fullname, String phone,
 			String address, String isadmin, String gender) throws ClassNotFoundException {
 		String sql1 = "INSERT INTO accounts (id_ac,username,password,isadmin) VALUES (?,?, ?,?)";
-		String sql2 = "INSERT INTO user_infor (id_account, fullname, phonenumber, address,gender) VALUES ((SELECT id_ac FROM accounts WHERE id_ac = ?), ?, ?, ?,?)";
+		String sql2 = "INSERT INTO user_infor (id_account, fullname, phonenumber, address,gender) VALUES (?, ?, ?, ?,?)";
 		Connection conn = null;
 		PreparedStatement stmt1 = null, stmt2 = null;
 		try {
@@ -295,12 +312,12 @@ public class accountDao {
 			stmt1.executeUpdate();
 
 			stmt2 = conn.prepareStatement(sql2);
+			stmt2.setString(1, id);
+			stmt2.setString(2, fullname);
+			stmt2.setString(3, phone);
+			stmt2.setString(4, address);
+			stmt2.setString(5, gender);
 
-			stmt2.setString(1, fullname);
-			stmt2.setString(2, phone);
-			stmt2.setString(3, address);
-			stmt2.setString(4, gender);
-			stmt2.setString(5, id);
 			stmt2.executeUpdate();
 
 		} catch (SQLException e) {
@@ -360,6 +377,7 @@ public class accountDao {
 		} catch (Exception e) {
 		}
 	}
+
 	public List<userInfo> searchAccount(String searchValue) {
 		List<userInfo> listPSearchs;
 		listPSearchs = new ArrayList<>();
@@ -396,6 +414,7 @@ public class accountDao {
 		}
 		return listPSearchs;
 	}
+
 	public static void main(String[] args) throws ClassNotFoundException {
 
 		accountDao dao = new accountDao();

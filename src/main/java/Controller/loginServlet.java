@@ -35,8 +35,6 @@ public class loginServlet extends HttpServlet {
 		try {
 			account isValid = dao.checkLogin(username, password);
 			if (isValid != null) {
-
-				
 					// khoi tao session
 					HttpSession session = request.getSession();
 					// thiet lap gia tri trong session

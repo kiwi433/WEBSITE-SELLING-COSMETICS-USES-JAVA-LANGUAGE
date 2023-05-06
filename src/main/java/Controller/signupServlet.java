@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import Dao.accountDao;
 import Model.account;
 import Model.accountInsertErr;
+import Model.userInfo;
 
 /**
  * Servlet implementation class signupServlet
@@ -41,17 +42,16 @@ public class signupServlet extends HttpServlet {
 		String address = request.getParameter("address");
 		String gender = request.getParameter("gender");
 	
-		String isAdmin= request.getParameter("isadmin");
-		String url = showInsertErr;
+//		String url = showInsertErr;
 		try {
 			boolean error = false;
-			if (username.trim().length() < 5 || username.trim().length() > 10) {
+			if (username.trim().length() < 3 || username.trim().length() > 10) {
 				error = true;
-				errors.setUsernameLengthErr("Username phai tu 5-10 ky tu");
+				errors.setUsernameLengthErr("Username phai tu 3-10 ky tu");
 			}
-			if (password.trim().length() < 5 || password.trim().length() > 10) {
+			if (password.trim().length() < 3|| password.trim().length() > 10) {
 				error = true;
-				errors.setPasswordLengthErr("Password phai tu 5-10 ky tu");
+				errors.setPasswordLengthErr("Password phai tu 3-10 ky tu");
 			} else if (!confirm.trim().equals(password.trim()))
 
 			{
@@ -63,8 +63,9 @@ public class signupServlet extends HttpServlet {
 			} else {
 				accountDao dao = new accountDao();
 				account acc = dao.checkAccount(username);
-				if (acc == null) {
-					dao.InsertAccountAD(id, username, password, fullname, phone, address, isAdmin, gender);
+				userInfo a = dao.checkUserinfo(id);
+				if (acc == null|| a==null) {
+					dao.signUpAccount(username, password, fullname, phone, address, gender);
 
 					request.setAttribute("messe", "Signing is successful !!!");
 					RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
@@ -77,8 +78,8 @@ public class signupServlet extends HttpServlet {
 				}
 
 			}
-			RequestDispatcher rd = request.getRequestDispatcher(url);
-			rd.forward(request, response);
+//			RequestDispatcher rd = request.getRequestDispatcher(url);
+//			rd.forward(request, response);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.getMessage();

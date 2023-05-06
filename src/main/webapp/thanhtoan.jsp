@@ -108,6 +108,8 @@ b
 
 
 
+
+
 :tag
 >
 </style>
@@ -132,10 +134,7 @@ b
 
 									<div
 										class="d-flex justify-content-between align-items-center mb-4">
-										<div>
-											<p class="mb-1">Shopping cart</p>
-											<p class="mb-0">You have 4 items in your cart</p>
-										</div>
+										<div></div>
 
 									</div>
 									<%
@@ -173,8 +172,9 @@ b
 														<h5 class="mb-0" style="font-size: 16px"><%=dcf.format(c.getPrice())%>Đ
 														</h5>
 													</div>
-													<a href="Removefromcart?id=<%=c.getId()%>" style="color: #cecece;"><i
-														class="fas fa-trash"style="color: red;"></i></a>
+													<a href="Removefromcart?id=<%=c.getId()%>"
+														style="color: #cecece;"><i class="fas fa-trash"
+														style="color: red;"></i></a>
 												</div>
 											</div>
 										</div>
@@ -197,53 +197,54 @@ b
 
 
 											<form class="mt-4" action="UpdateOrderdetail" method="post">
-											<div class="form-outline form-white mb-2">
-													<label class="form-label" for="typeName">Mã tài khoản</label>
-													<input value="${sessionScope.username.id}" name="id_ac" 
-														class="form-control form-control-lg" readonly="readonly" />
+												<div class="form-outline form-white mb-2">
+													<label class="form-label" for="typeName">Mã tài
+														khoản</label> <input value="${sessionScope.username.id}"
+														name="id_ac" class="form-control form-control-lg"
+														readonly="readonly" />
 
 												</div>
 												<div class="form-outline form-white mb-2">
 													<label class="form-label" for="typeName">Full name</label>
-													<input value="${us.fullname}"name="txtFullname"
-														class="form-control form-control-lg"  />
+													<input value="${us.fullname}" name="txtFullname"
+														class="form-control form-control-lg" />
 
 												</div>
 
 												<div class="form-outline form-white mb-4">
 													<label class="form-label" for="typeText">Phone</label> <input
 														type="text" id="typeText" name="txtPhone"
-														class="form-control form-control-lg"value="${us.phonenumber}" />
+														class="form-control form-control-lg"
+														value="${us.phonenumber}" />
 
 												</div>
 
-												
-														<div class="form-outline form-white mb-4">
-															<label class="form-label" for="typeExp">Address</label> <input
-																type="text" id="typeExp" name ="txtAddress"
-																class="form-control form-control-lg"
-															
-															 value="${us.address}" />
 
-														</div>
-													
+												<div class="form-outline form-white mb-4">
+													<label class="form-label" for="typeExp">Address</label> <input
+														type="text" id="typeExp" name="txtAddress"
+														class="form-control form-control-lg" value="${us.address}" />
 
-												
-												
-												<button type="submit"  class="btn btn-info btn-block btn-lg">
-											save
-												</button>
+												</div>
 
-</form>
-									
+
+
+
+												<button type="submit" class="btn btn-info btn-block btn-lg">
+													save</button>
+
+											</form>
+
 
 											<hr class="my-4">
-<a class="btn btn-info btn-block btn-lg" href="Checkout">
-											
+											<a class="btn btn-info btn-block btn-lg" href="Checkout">
+
 												<div class="d-flex justify-content-between">
-													<span>${(total>0)?dcf.format(total):0}Đ</span> <span>Checkout <i
-														class="fas fa-long-arrow-alt-right ms-2"></i></span>
-												</div></a>
+													<span>${(total>0)?dcf.format(total):0}Đ</span> <span>Checkout
+														<i class="fas fa-long-arrow-alt-right ms-2"></i>
+													</span>
+												</div>
+											</a>
 
 										</div>
 									</div>

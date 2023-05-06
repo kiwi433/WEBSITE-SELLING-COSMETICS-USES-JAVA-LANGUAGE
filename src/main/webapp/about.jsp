@@ -14,7 +14,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="about_taital_main">
-							<h1 class="about_taital">About Our beauty sotore</h1>
+							<h1 class="about_taital">About Our beauty store</h1>
 							<p class="about_text">Our store is always dedicated to each
 								customer. With a wide range of products for you to choose from,
 								we will always give you a free consultation. Thank</p>

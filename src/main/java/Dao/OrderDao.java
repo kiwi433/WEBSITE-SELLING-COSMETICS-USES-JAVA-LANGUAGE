@@ -249,12 +249,12 @@ public class OrderDao {
 		ResultSet rs = null;
 		try {
 			con = DbCon.getConnection();
-			String sql = "SELECT *from `order`inner join product on `order`.id_product=product.id_p inner join user_infor on `order`.id_user=`user_infor`.id_account where product.name like ? or user_infor.fullname like ?";
+			String sql = "SELECT *from `order`inner join product on `order`.id_product=product.id_p inner join user_infor on `order`.id_user=`user_infor`.id_account where product.name like ? or user_infor.fullname like ? or YEAR(date_order) like ? or DAY(date_order) like  ?";
 			stm = con.prepareStatement(sql);
 			stm.setString(1, "%" + searchValue + "%");
 			stm.setString(2, "%" + searchValue + "%");
-//			stm.setString(3, "%" + searchValue + "%");
-
+			stm.setString(3, "%" + searchValue + "%");
+			stm.setString(4, "%" + searchValue + "%");
 			rs = stm.executeQuery();
 			while (rs.next()) {
 				Order p = new Order();
@@ -272,6 +272,8 @@ public class OrderDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			e.getStackTrace();
+			e.getLocalizedMessage();
 		}
 		return listPSearchs;
 	}

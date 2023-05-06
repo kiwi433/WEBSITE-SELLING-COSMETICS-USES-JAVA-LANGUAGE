@@ -244,7 +244,7 @@ translateY(
 					</span>
 					<!--   user name Input-->
 					<input class="form-input" id="txt-input" type="text"
-						name="txtUsername" placeholder="UserName(5- 10 chars)"
+						name="txtUsername" placeholder="UserName(3- 10 chars)"
 						value="${param.txtUsername }"><br>
 					<c:set var="errors" value="${requestScope.INSERTTERR }" />
 					<c:if test="${not empty errors.usernameLengthErr}">
@@ -256,7 +256,7 @@ translateY(
 					</span>
 					<!--   Password Input-->
 					<input class="form-input" type="password" name="txtPassword"
-						placeholder="Password(5- 10 chars)" id="pwd">
+						placeholder="Password(3- 10 chars)" id="pwd">
 					<!--      Show/hide password  -->
 					<span> <i class="fa fa-eye" aria-hidden="true" type="button"
 						id="eye"></i><br>

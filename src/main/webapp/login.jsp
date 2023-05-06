@@ -278,7 +278,7 @@ button:hover {
 				</div>
 
 				<!--   other buttons -->
-				<div class="other">
+				</div><div class="other">
 					<!--      Forgot Password button-->
 					<button class="btn submits frgt-pass"
 						 type="reset">Reset
@@ -293,10 +293,9 @@ button:hover {
 				</div>
 
 				<!--   End Conrainer  -->
-			</div>
+</div>
 			<!-- End Form -->
 		</form>
-	</div>
 
 </body>
 <script type="text/javascript">
