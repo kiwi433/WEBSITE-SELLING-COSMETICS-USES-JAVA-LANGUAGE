@@ -1,8 +1,7 @@
-create database CSDLNC;
-use CSDLNC;
-
+create database CSDLNCT3;
+use CSDLNCT3;
 create table `accounts`(
-`id` int not null primary key auto_increment,
+`id_ac` int not null primary key auto_increment,
 `username` varchar(50),
 `password` varchar(50),
 `isAdmin` boolean
@@ -16,10 +15,10 @@ create table `user_infor`(
 `address` varchar(255),
 `position` varchar(50),
 `total` int default 0,
-CONSTRAINT pk_account_userinfo foreign key (`id_account`) references `accounts`(`id`)
+CONSTRAINT pk_account_userinfo foreign key (`id_account`) references `accounts`(`id_ac`)
 );
 create table `product`(
-`id` int not null primary key auto_increment,
+`id_p` int not null primary key auto_increment,
 `image` varchar(255),
 `name` varchar(255),
 `price` varchar(255),
@@ -83,7 +82,7 @@ BEGIN
     ) AS duplicates ON product.name = duplicates.name
     WHERE product.id_p> duplicates.min_id;
     UPDATE product
-SET price = REPLACE(price, '.','');
+SET price = REPLACE(`price`, '.','');
 UPDATE products  set price = RTRIM(price);
 END //DELIMITER ;
 
@@ -93,4 +92,3 @@ ON SCHEDULE EVERY 1 second
 STARTS CURRENT_TIMESTAMP
 ON COMPLETION PRESERVE
 DO call delete_empty_customer_name();
-
