@@ -143,7 +143,7 @@
 
 										
 										<c:if test="${sessionScope.username != null }">
-										<a href="Checkout">Order</a>
+										
 											<a href="cartServlet">Cart</a>
 										</c:if>
 

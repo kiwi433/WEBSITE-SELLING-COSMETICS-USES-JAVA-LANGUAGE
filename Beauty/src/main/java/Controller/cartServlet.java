@@ -21,7 +21,10 @@ public class cartServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		
+		String id_ac = request.getParameter("id_ac");
+		accountDao dao = new accountDao();
+		userInfo u = dao.getUserbyId(id_ac);
+		request.setAttribute("user_info", u);
 		request.getRequestDispatcher("thanhtoan.jsp").forward(request, response);
 	}
 

@@ -36,7 +36,8 @@ public class Addtocart extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 
 		try (PrintWriter out = response.getWriter()) {
-			out.print("add to cart servlet");
+			out.print("add to cart servlet");	
+			HttpSession session = request.getSession();
 			account auth = (account) request.getSession().getAttribute("username");
 	
 				if (auth != null) {	ArrayList<Cart> cartList = new ArrayList<>();
@@ -47,7 +48,7 @@ public class Addtocart extends HttpServlet {
 				cm.setId(id);
 				cm.setQuantity(1);
 	
-				HttpSession session = request.getSession();
+			
 				ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 				if (cart_list == null) {
 					cartList.add(cm);
