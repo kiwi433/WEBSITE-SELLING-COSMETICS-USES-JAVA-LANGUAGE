@@ -1,5 +1,5 @@
-create database CSDLNCT3;
-use CSDLNCT3;
+create database CSDLNC;
+use CSDLNC;
 create table `accounts`(
 `id_ac` int not null primary key auto_increment,
 `username` varchar(50),
